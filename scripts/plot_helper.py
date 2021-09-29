@@ -86,7 +86,7 @@ def plot_vector(vectors, tails=None, color_hue=None):
     # selecting colors hue
     if color_hue is not None:
         ncolors = len(vectors)
-        colors = sns.color_palette(color_hue,ncolors)
+        colors = sns.color_palette(color_hue,ncolors).as_hex()
     else:
         colors = darkblue # default color for vectors
 
