@@ -5,6 +5,8 @@ from matplotlib import pyplot, ticker, get_backend, rc
 from mpl_toolkits.mplot3d import Axes3D
 from itertools import cycle
 
+import seaborn as sns 
+
 # interactive backends
 _int_backends = ['GTK3Agg', 'GTK3Cairo', 'MacOSX', 'nbAgg',
                  'Qt4Agg', 'Qt4Cairo', 'Qt5Agg', 'Qt5Cairo',
@@ -46,7 +48,7 @@ def set_rc(func):
     return wrapper
 
 @set_rc
-def plot_vector(vectors, tails=None):
+def plot_vector(vectors, tails=None, color_hue=None):
     ''' Draw 2d vectors based on the values of the vectors and the position of their tails.
     
     Parameters
@@ -70,6 +72,9 @@ def plot_vector(vectors, tails=None):
     >>> plot_vector(v, t)   # draw 3 vectors with 3 different tails
 
     '''   
+
+    
+
     vectors = numpy.array(vectors)
     assert vectors.shape[1] == 2, "Each vector should have 2 elements."  
     if tails is not None:
@@ -78,6 +83,14 @@ def plot_vector(vectors, tails=None):
     else:
         tails = numpy.zeros_like(vectors)
     
+    # selecting colors hue
+    if color_hue is not None:
+        ncolors = len(vectors)
+        colors = sns.color_palette(color_hue,ncolors)
+    else:
+        colors = darkblue # default color for vectors
+
+
     # tile vectors or tails array if needed
     nvectors = vectors.shape[0]
     ntails = tails.shape[0]
@@ -93,9 +106,12 @@ def plot_vector(vectors, tails=None):
     limit = numpy.max(numpy.abs(numpy.hstack((tails, heads))))
     limit = numpy.ceil(limit * 1.2)   # add some margins
     
+    
+
+
     figsize = numpy.array([2,2]) * fig_scale
     figure, axis = pyplot.subplots(figsize=figsize)
-    axis.quiver(tails[:,0], tails[:,1], vectors[:,0], vectors[:,1], color=darkblue, 
+    axis.quiver(tails[:,0], tails[:,1], vectors[:,0], vectors[:,1], color=colors, 
                   angles='xy', scale_units='xy', scale=1)
     axis.set_xlim([-limit, limit])
     axis.set_ylim([-limit, limit])
