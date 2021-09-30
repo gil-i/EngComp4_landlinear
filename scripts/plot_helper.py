@@ -47,7 +47,7 @@ def set_rc(func):
         func(*args, **kwargs)
     return wrapper
 
-@set_rc
+#@set_rc
 def plot_vector(vectors, tails=None, color_hue=None):
     ''' Draw 2d vectors based on the values of the vectors and the position of their tails.
     
