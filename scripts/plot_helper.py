@@ -43,7 +43,7 @@ def set_rc(func):
         rc('font', family='serif', size=fontsize)
         rc('figure', dpi=200)
         rc('axes', axisbelow=True, titlesize=5)
-        rc('lines', linewidth=1.5)
+        rc('lines', linewidth=2.2)
         func(*args, **kwargs)
     return wrapper
 
