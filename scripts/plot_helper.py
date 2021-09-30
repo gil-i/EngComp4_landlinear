@@ -47,7 +47,6 @@ def set_rc(func):
         func(*args, **kwargs)
     return wrapper
 
-#@set_rc
 
 
 def plot_vector(vectors, tails=None, color_hue=None):
@@ -64,6 +63,10 @@ def plot_vector(vectors, tails=None, color_hue=None):
         origin (0,0). If len(tails) is 1, all tails are set at the same position. Otherwise,
         vectors and tails must have the same length.
     
+    color_hue: string, optional
+        Name of the color hue to be used for the different vectors. If not given every vector
+        is colored with darkblue color.
+
     Examples
     --------
     >>> v = [(1, 3), (3, 3), (4, 6)]
