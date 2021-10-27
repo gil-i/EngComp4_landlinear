@@ -237,8 +237,8 @@ def plot_linear_transformation(matrix, *vectors, unit_vector=True, unit_circle=F
     """
     figsize = numpy.array([4,2]) * fig_scale
     figure, (axis1, axis2) = pyplot.subplots(1, 2, figsize=figsize)
-    plot_transformation_helper(axis1, numpy.identity(2), *vectors, unit_vector=unit_vector, unit_circle=unit_circle, title='Before transformation')
-    plot_transformation_helper(axis2, matrix, *vectors, unit_vector=unit_vector, unit_circle=unit_circle, title='After transformation')
+    plot_transformation_helper(axis1, numpy.identity(2), *vectors, unit_vector=unit_vector, unit_circle=unit_circle, title='Antes de la transformación')
+    plot_transformation_helper(axis2, matrix, *vectors, unit_vector=unit_vector, unit_circle=unit_circle, title='Después de transformación')
 
 @set_rc
 def plot_linear_transformations(*matrices, unit_vector=True, unit_circle=False):
@@ -267,13 +267,13 @@ def plot_linear_transformations(*matrices, unit_vector=True, unit_circle=False):
     for i in range(nplots):  # fig_idx 
         if i == 0:
             matrix_trans = numpy.identity(2)
-            title = 'Before transformation'
+            title = 'Antes de transformación'
         else:
             matrix_trans = matrices[i-1] @ matrix_trans
             if i == 1:
-                title = 'After {} transformation'.format(i)
+                title = 'Antes de transformación {} '.format(i)
             else:
-                title = 'After {} transformations'.format(i)
+                title = 'Después de transformación {} '.format(i)
         plot_transformation_helper(axes[i//nx, i%nx], matrix_trans, unit_vector=unit_vector, unit_circle=unit_circle, title=title)
     # hide axes of the extra subplot (only when nplots is an odd number)
     if nx*ny > nplots:
@@ -399,13 +399,13 @@ def plot_3d_linear_transformations(*matrices, grid=False, unit_sphere=False):
         axis = figure.add_subplot(ny, nx, i+1, projection='3d')
         if i == 0:
             matrix_trans = numpy.identity(3)
-            title = 'Before transformation'
+            title = 'Antes de la transformación'
         else:
             matrix_trans = matrices[i-1] @ matrix_trans
             if i == 1:
-                title = 'After {} transformation'.format(i)
+                title = 'Antes de transformación {} '.format(i)
             else:
-                title = 'After {} transformations'.format(i)
+                title = 'Despues de transformación {} '.format(i)
         plot_3d_transformation_helper(axis, matrix_trans, grid=grid, unit_sphere=unit_sphere, title=title)
 
 @set_rc
